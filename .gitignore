@@ -630,4 +630,14 @@ fabric.properties
 /dataSources/
 /dataSources.local.xml
 
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
+*.db-shm
+*.db-wal
+
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,csharp,rider,dotnetcore
