@@ -617,4 +617,17 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.SSD.Assignment.Authorization.iml
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,csharp,rider,dotnetcore
