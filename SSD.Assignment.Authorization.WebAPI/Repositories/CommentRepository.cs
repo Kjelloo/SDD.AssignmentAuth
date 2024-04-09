@@ -1,4 +1,5 @@
-﻿using SSD.Assignment.Authorization.WebAPI.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using SSD.Assignment.Authorization.WebAPI.Model;
 using SSD.Assignment.Authorization.WebAPI.Repositories.Interfaces;
 using SSD.Assignment.Authorization.WebAPI.Repository.DbContext;
 using SSD.Assignment.Authorization.WebAPI.Repository.Interfaces;
@@ -34,6 +35,8 @@ public class CommentRepository : ICommentRepository
 
     public Comment Update(Comment entity)
     {
+        _context.Entry(entity).State = EntityState.Detached;
+        
         var comment = _context.Comments.Update(entity);
         _context.SaveChanges();
 
@@ -51,11 +54,11 @@ public class CommentRepository : ICommentRepository
 
     public IEnumerable<Comment> GetCommentsByArticleId(int articleId)
     {
-        return _context.Comments.Where(c => c.ArticleId == articleId).ToList();
+        return _context.Comments.Where(c => c.ArticleId == articleId).AsNoTracking().ToList();
     }
 
     public IEnumerable<Comment> GetCommentByUserId(int userId)
     {
-        return _context.Comments.Where(c => c.UserId == userId).ToList();
+        return _context.Comments.Where(c => c.UserId == userId).AsNoTracking().ToList();
     }
 }

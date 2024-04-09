@@ -18,6 +18,7 @@ var secret = RandomNumberGenerator.GetBytes(32);
 // Add services to the container.
 builder.Services.AddDbContext<NewsDbContext>(opt =>
 {
+    opt.EnableSensitiveDataLogging();
     opt.UseSqlite("Data Source=News.db");
 });
 
