@@ -14,3 +14,6 @@ The application uses json web tokens for authorization. Once logging in through 
 yourself in the Swagger UI by clicking the `Authorize` button and pasting the token. 
 
 ![auth.png](img%2Fauth.png)
+
+
+the comment and article controllers are protected by the Authorize attribute, so you will need to be authenticated to access them, some methods are allowed to be accessed anonymously, needing no authentication.
