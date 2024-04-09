@@ -1,14 +1,14 @@
 ﻿using SSD.Assignment.Authorization.WebAPI.Model;
-using SSD.Assignment.Authorization.WebAPI.Repository.Interfaces;
+using SSD.Assignment.Authorization.WebAPI.Repositories.Interfaces;
 using SSD.Assignment.Authorization.WebAPI.Services.Interfaces;
 
 namespace SSD.Assignment.Authorization.WebAPI.Services;
 
-public class CommentService : IService<Comment>
+public class CommentService : ICommentService
 {
-    private readonly IRepository<Comment> _repo;
+    private readonly ICommentRepository _repo;
 
-    public CommentService(IRepository<Comment> repo)
+    public CommentService(ICommentRepository repo)
     {
         _repo = repo;
     }
@@ -57,5 +57,25 @@ public class CommentService : IService<Comment>
             throw new ArgumentException("Invalid ID.");
         
         return _repo.Delete(id);
+    }
+
+    public IEnumerable<Comment> GetCommentsByArticleId(int articleId)
+    {
+        var comments = _repo.GetCommentsByArticleId(articleId);
+        
+        if (comments == null || !comments.Any())
+            throw new Exception("No comments found.");
+
+        return comments;
+    }
+
+    public IEnumerable<Comment> GetCommentsByUserId(int userId)
+    {
+        var comments = _repo.GetCommentByUserId(userId);
+        
+        if (comments == null || !comments.Any())
+            throw new Exception("No comments found.");
+
+        return comments;
     }
 }

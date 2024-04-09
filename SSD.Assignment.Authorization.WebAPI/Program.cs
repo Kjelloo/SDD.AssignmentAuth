@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SSD.Assignment.Authorization.WebAPI.Model;
+using SSD.Assignment.Authorization.WebAPI.Repositories;
+using SSD.Assignment.Authorization.WebAPI.Repositories.Interfaces;
 using SSD.Assignment.Authorization.WebAPI.Repository;
 using SSD.Assignment.Authorization.WebAPI.Repository.DbContext;
 using SSD.Assignment.Authorization.WebAPI.Repository.Interfaces;
-using SSD.Assignment.Authorization.WebAPI.Repository.Repositories;
 using SSD.Assignment.Authorization.WebAPI.Services;
 using SSD.Assignment.Authorization.WebAPI.Services.Interfaces;
 
@@ -24,11 +25,11 @@ builder.Services.AddTransient<IDbInitializer, DbInitializer>();
 
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
 builder.Services.AddScoped<IRepository<Article>, ArticleRepository>();
-builder.Services.AddScoped<IRepository<Comment>, CommentRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IService<Article>, ArticleService>();
-builder.Services.AddScoped<IService<Comment>, CommentService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 builder.Services.AddSingleton<IAuthService>(_ => new AuthService(secret));
 
@@ -37,8 +38,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false, // Todo: validate issuer
-            ValidateAudience = false, // Todo: validate audience
+            ValidateIssuer = false, 
+            ValidateAudience = false, 
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ClockSkew = TimeSpan.FromMinutes(5),

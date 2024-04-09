@@ -1,6 +1,6 @@
 ﻿using SSD.Assignment.Authorization.WebAPI.Repository.DbContext;
 
-namespace SSD.Assignment.Authorization.WebAPI.Repository;
+namespace SSD.Assignment.Authorization.WebAPI.Repositories.Interfaces;
 
 public interface IDbInitializer
 {

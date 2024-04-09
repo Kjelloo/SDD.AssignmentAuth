@@ -1,10 +1,11 @@
 ﻿using SSD.Assignment.Authorization.WebAPI.Model;
+using SSD.Assignment.Authorization.WebAPI.Repositories.Interfaces;
 using SSD.Assignment.Authorization.WebAPI.Repository.DbContext;
 using SSD.Assignment.Authorization.WebAPI.Repository.Interfaces;
 
-namespace SSD.Assignment.Authorization.WebAPI.Repository.Repositories;
+namespace SSD.Assignment.Authorization.WebAPI.Repositories;
 
-public class CommentRepository : IRepository<Comment>
+public class CommentRepository : ICommentRepository
 {
     private readonly NewsDbContext _context;
 
@@ -46,5 +47,15 @@ public class CommentRepository : IRepository<Comment>
         _context.SaveChanges();
 
         return comment;
+    }
+
+    public IEnumerable<Comment> GetCommentsByArticleId(int articleId)
+    {
+        return _context.Comments.Where(c => c.ArticleId == articleId).ToList();
+    }
+
+    public IEnumerable<Comment> GetCommentByUserId(int userId)
+    {
+        return _context.Comments.Where(c => c.UserId == userId).ToList();
     }
 }

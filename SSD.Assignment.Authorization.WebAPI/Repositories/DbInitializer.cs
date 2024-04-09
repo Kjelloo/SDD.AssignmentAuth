@@ -1,4 +1,5 @@
 ﻿using SSD.Assignment.Authorization.WebAPI.Model;
+using SSD.Assignment.Authorization.WebAPI.Repositories.Interfaces;
 using SSD.Assignment.Authorization.WebAPI.Repository.DbContext;
 
 namespace SSD.Assignment.Authorization.WebAPI.Repository;

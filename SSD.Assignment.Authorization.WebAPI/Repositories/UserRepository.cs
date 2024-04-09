@@ -2,7 +2,7 @@
 using SSD.Assignment.Authorization.WebAPI.Repository.DbContext;
 using SSD.Assignment.Authorization.WebAPI.Repository.Interfaces;
 
-namespace SSD.Assignment.Authorization.WebAPI.Repository.Repositories;
+namespace SSD.Assignment.Authorization.WebAPI.Repositories;
 
 public class UserRepository : IRepository<User>
 {
